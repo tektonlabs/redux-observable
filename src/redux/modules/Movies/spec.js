@@ -4,7 +4,7 @@ import MovieMap from 'models/MovieMap';
 import reducer, {
   addMovie,
   removeMovie,
-  toggleMovie,
+  toggleMovieWatched,
   clearWatchedMovies,
 } from './index';
 
@@ -43,14 +43,77 @@ describe('Movies reducer', () => {
   });
 
   it('marks a movie as watched', () => {
+    const state = new MovieMap({
+      '1': new Movie({
+        id: '1',
+        title: 'Test Movie',
+      }),
+    });
 
+    const action = toggleMovieWatched('1');
+
+    const nextState = new MovieMap({
+      '1': new Movie({
+        id: '1',
+        title: 'Test Movie',
+        watched: true,
+      }),
+    });
+
+    expect(reducer(state, action)).toEqual(nextState);
   });
 
   it('marks a movie as not watched', () => {
+    const state = new MovieMap({
+      '1': new Movie({
+        id: '1',
+        title: 'Test Movie',
+        watched: true,
+      }),
+    });
 
+    const action = toggleMovieWatched('1');
+
+    const nextState = new MovieMap({
+      '1': new Movie({
+        id: '1',
+        title: 'Test Movie',
+        watched: false,
+      }),
+    });
+
+    expect(reducer(state, action)).toEqual(nextState);
   });
 
   it('clears the watched movies', () => {
+    const state = new MovieMap({
+      '1': new Movie({
+        id: '1',
+        title: 'Test Movie',
+        watched: true,
+      }),
+      '2': new Movie({
+        id: '2',
+        title: 'Test Movie',
+        watched: false,
+      }),
+      '3': new Movie({
+        id: '3',
+        title: 'Test Movie',
+        watched: true,
+      }),
+    });
 
+    const action = clearWatchedMovies();
+
+    const newState = new MovieMap({
+      '2': new Movie({
+        id: '2',
+        title: 'Test Movie',
+        watched: false,
+      }),
+    });
+
+    expect(reducer(state, action)).toEqual(newState);
   });
 });

@@ -42,6 +42,8 @@ export default function reducer(state = initialState, action) {
   const cases = {};
   cases[ADD] = () => !action.movie ? state : reducerAdd(state, action.movie);
   cases[REMOVE] = () => state.remove(action.movieId);
+  cases[TOGGLE_WATCHED] = () => state.update(action.movieId, movie => movie.set('watched', !movie.isWatched()));
+  cases[CLEAR_WATCHED] = () => state.filter(movie => !movie.isWatched());
 
   return switchcase(cases)(state)(action.type);
 }
