@@ -17,7 +17,7 @@ describe('Movies reducer', () => {
       title: 'Test Movie',
     });
 
-    let nextState = new MovieMap({
+    const nextState = new MovieMap({
       '1': new Movie({
         id: '1',
         title: 'Test Movie',

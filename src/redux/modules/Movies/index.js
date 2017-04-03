@@ -3,7 +3,7 @@ import Movie from 'models/Movie';
 import MovieMap from 'models/MovieMap';
 import switchcase from 'utils/switchcase';
 
-// Action
+// Actions
 const ADD = 'redux-observable/movies/ADD';
 const REMOVE = 'redux-observable/movies/REMOVE';
 const TOGGLE_WATCHED = 'redux-observable/movies/TOGGLE_WATCHED';
