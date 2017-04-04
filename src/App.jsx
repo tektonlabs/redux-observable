@@ -1,17 +1,16 @@
-import React from 'react';
-import {
-  BrowserRouter as Router,
-  Route,
-} from 'react-router-dom';
+import React, { PropTypes } from 'react';
 
-const App = () => (
-  <Router>
-    <div>
-      <Route exact path="/" render={() => <h1>Home</h1>} />
-    </div>
-  </Router>
-);
+const App = ({ className }) => {
+  return (
+    <div>Hello</div>
+  );
+};
 
 App.displayName = 'App';
 
+App.propTypes = {
+  className: PropTypes.string,
+};
+
 export default App;
+
