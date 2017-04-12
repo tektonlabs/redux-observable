@@ -1,5 +1,16 @@
 import React from 'react';
 import { render } from 'react-dom';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import { combineReducers } from 'redux-immutable';
+import reducers from './store/reducers';
 import Routes from './Routes';
 
-render(<Routes />, document.getElementById('root'));
+const store = createStore(combineReducers(reducers));
+
+render(
+  <Provider store={store}>
+    <Routes />
+  </Provider>,
+  document.getElementById('root')
+);

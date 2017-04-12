@@ -1,8 +1,11 @@
 import React, { PropTypes } from 'react';
+import ToWatchList from 'containers/ToWatchList';
 
 const App = ({ className }) => {
   return (
-    <div>Hello</div>
+    <div>
+      <ToWatchList />
+    </div>
   );
 };
 
