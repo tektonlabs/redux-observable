@@ -1,10 +1,12 @@
 import React, { PropTypes } from 'react';
-import ToWatchList from 'containers/ToWatchList';
+import SearchBar from 'containers/SearchBar';
+import FetchedMovies from 'containers/FetchedMovies';
 
 const App = ({ className }) => {
   return (
     <div>
-      <ToWatchList />
+      <SearchBar />
+      <FetchedMovies />
     </div>
   );
 };

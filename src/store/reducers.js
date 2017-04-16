@@ -1,8 +1,6 @@
-import movies from 'redux/modules/Movies';
-import searchResults from 'redux/modules/SearchResults';
+import searchResults from 'modules/SearchResults';
 
 const reducers = {
-  movies,
   searchResults,
 };
 

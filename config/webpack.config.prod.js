@@ -86,7 +86,8 @@ module.exports = {
       'components': paths.appSrc + '/components',
       'containers': paths.appSrc + '/containers',
       'models': paths.appSrc + '/models',
-      'redux': paths.appSrc + '/redux',
+      'modules': paths.appSrc + '/modules',
+      'services': paths.appSrc + '/services',
       'utils': paths.appSrc + '/utils'
     }
   },
