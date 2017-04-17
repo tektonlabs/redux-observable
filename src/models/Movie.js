@@ -3,6 +3,9 @@ import Immutable from 'immutable';
 const MovieRecord = Immutable.Record({
   id: null,
   title: '',
+  type: '',
+  year: '',
+  poster: '',
   watched: false,
 });
 

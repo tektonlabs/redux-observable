@@ -1,14 +1,30 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { updateSearchValue, fetchMovies } from 'modules/SearchResults';
+import {
+  updateSearchValue,
+  fetchMovies,
+  fetchMoviesCancel,
+  clearMovies,
+} from 'modules/SearchResults';
 
-const SearchBar = ({ value, updateSearchValue, fetchMovies }) => {
+const SearchBar = ({
+  value,
+  updateSearchValue,
+  fetchMovies,
+  fetchMoviesCancel,
+  clearMovies,
+}) => {
   const onInputChange = (e) => {
     updateSearchValue(e.target.value);
   };
 
   const onInputKeyUp = () => {
-    fetchMovies(value);
+    if (value) {
+      fetchMovies(value);
+    } else {
+      fetchMoviesCancel();
+      clearMovies();
+    }
   };
 
   return (
@@ -30,6 +46,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
   updateSearchValue,
   fetchMovies,
+  fetchMoviesCancel,
+  clearMovies,
 };
 
 export default connect(
