@@ -1,16 +1,22 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import MovieMap from 'models/MovieMap';
+import { selector } from 'modules/SearchResults';
+import { addMovie } from 'modules/Movies';
 
 const FetchedMovies = ({
   movies,
+  addMovie,
 }) => (
   <div>
     Search Results:
     {movies.isEmpty() ? <p>No results found</p> : (
       <ul>
         {movies.valueSeq().map(movie => (
-          <li key={movie.get('id')}>
+          <li
+            key={movie.get('id')}
+            onClick={() => addMovie(movie)}
+          >
             <div>
               <p>
                 Title: {movie.getTitle()}
@@ -31,9 +37,14 @@ FetchedMovies.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  movies: state.getIn(['searchResults', 'movies']),
+  movies: selector.getMovies(state),
 });
 
+const mapDispatchToProps = {
+  addMovie,
+};
+
 export default connect(
-  mapStateToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(FetchedMovies);

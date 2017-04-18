@@ -5,6 +5,7 @@ import {
   fetchMovies,
   fetchMoviesCancel,
   clearMovies,
+  selector,
 } from 'modules/SearchResults';
 
 const SearchBar = ({
@@ -40,7 +41,7 @@ SearchBar.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  value: state.getIn(['searchResults', 'searchValue']),
+  value: selector.getSearchValue(state),
 });
 
 const mapDispatchToProps = {

@@ -1,7 +1,16 @@
-import Immutable from 'immutable';
 import Movie from 'models/Movie';
 import MovieMap from 'models/MovieMap';
 import switchcase from 'utils/switchcase';
+
+// Initial State
+const initialState = new MovieMap();
+
+//Selectors
+const rootSelector = state => state.get('movies');
+
+export const selector = {
+  getMovies: rootSelector,
+};
 
 // Actions
 const ADD = 'redux-observable/movies/ADD';
@@ -29,13 +38,11 @@ export const clearWatchedMovies = () => ({
   type: CLEAR_WATCHED,
 });
 
-// Initial State
-const initialState = new MovieMap();
-
 // Reducer Functions
-const reducerAdd = (state, movie) => (
-  state.set(movie.id, new Movie(movie))
-);
+const reducerAdd = (state, movie) => {
+  console.log('adds movie');
+  return state.set(movie.id, new Movie(movie))
+};
 
 // Reducer
 export default function reducer(state = initialState, action) {
