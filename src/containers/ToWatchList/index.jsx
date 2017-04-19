@@ -2,29 +2,39 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import MovieMap from 'models/MovieMap';
 import {
+  toggleMovieWatched,
   removeMovie,
+  clearWatchedMovies,
   selector,
 } from 'modules/Movies';
+import MovieCard from 'components/MovieCard';
 
-const ToWatchList = ({ movies, removeMovie }) => (
+const ToWatchList = ({
+  movies,
+  toggleMovieWatched,
+  removeMovie,
+  clearWatchedMovies,
+}) => (
   <div>
     To Watch Movie List:
     {movies.isEmpty() ? <p>No movies added to your list yet! Add some!</p> : (
-      <ul>
-        {movies.valueSeq().map(movie => (
-          <li
-            key={movie.get('id')}
-            onClick={() => removeMovie(movie.get('id'))}
-          >
-            <div>
-              <p>
-                Title: {movie.getTitle()}
-              </p>
-              <img src={movie.get('poster')} alt={`${movie.title} Poster`} />
-            </div>
-          </li>
-        ))}
-      </ul>
+      <div>
+        <ul>
+          {movies.valueSeq().map(movie => (
+            <MovieCard
+              key={movie.get('id')}
+              movie={movie}
+              ontoggleMovieWatched={() => { toggleMovieWatched(movie.get('id')); }}
+              onRemoveMovie={() => { removeMovie(movie.get('id')); }}
+            />
+          ))}
+        </ul>
+        <button
+          onClick={() => { clearWatchedMovies(); }}
+        >
+          Clear Watched
+        </button>
+      </div>
     )}
   </div>
 );
@@ -40,7 +50,9 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
+  toggleMovieWatched,
   removeMovie,
+  clearWatchedMovies,
 };
 
 export default connect(

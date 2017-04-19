@@ -1,16 +1,19 @@
 import React from 'react';
-import {
-  BrowserRouter as Router,
-  Route,
-} from 'react-router-dom';
+import { Route } from 'react-router';
+import createHistory from 'history/createBrowserHistory';
+import { ConnectedRouter } from 'react-router-redux';
 import App from './App';
 
+const history = createHistory();
+
 const Routes = () => (
-  <Router>
+  <ConnectedRouter history={history}>
     <div>
       <Route exact path="/" component={App} />
+      <Route exact path="/watched" component={App} />
+      <Route exact path="/to-watch" component={App} />
     </div>
-  </Router>
+  </ConnectedRouter>
 );
 
 Routes.displayName = 'Routes';
