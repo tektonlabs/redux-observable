@@ -45,7 +45,7 @@ ToWatchList.propTypes = {
   movies: PropTypes.instanceOf(MovieMap).isRequired,
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   movies: selector.getMovies(state),
 });
 

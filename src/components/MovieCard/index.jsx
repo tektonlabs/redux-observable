@@ -5,32 +5,28 @@ const MovieCard = ({
   movie,
   ontoggleMovieWatched,
   onRemoveMovie,
-}) => {
-  console.log(movie);
-  console.log(movie instanceof Movie);
-  return (
-    <li>
-      <div>
-        <button
-          onClick={ontoggleMovieWatched}
-        >
-          O
-        </button>
-        <div style={{ opacity: movie.isWatched() ? '0.5' : '1' }}>
-          <p>
-            Title: {movie.getTitle()}
-          </p>
-          <img src={movie.get('poster')} alt={`${movie.title} Poster`} />
-        </div>
-        <button
-          onClick={onRemoveMovie}
-        >
-          X
-        </button>
+}) => (
+  <li>
+    <div>
+      <button
+        onClick={ontoggleMovieWatched}
+      >
+        O
+      </button>
+      <div style={{ opacity: movie.get('watched') ? '0.5' : '1' }}>
+        <p>
+          Title: {movie.get('title')}
+        </p>
+        <img src={movie.get('poster')} alt={`${movie.title} Poster`} />
       </div>
-    </li>
-  );
-};
+      <button
+        onClick={onRemoveMovie}
+      >
+        X
+      </button>
+    </div>
+  </li>
+);
 
 MovieCard.displayName = 'MovieCard';
 

@@ -1,5 +1,5 @@
-import Immutable from 'immutable';
+import { OrderedMap } from 'immutable';
 
-const MovieMap = Immutable.OrderedMap;
+const MovieMap = OrderedMap;
 
 export default MovieMap;

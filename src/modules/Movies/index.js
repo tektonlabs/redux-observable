@@ -39,15 +39,19 @@ export const clearWatchedMovies = () => ({
 });
 
 // Reducer Functions
-const reducerAdd = (state, movie) => state.set(movie.id, new Movie(movie));
+const reducerAdd = (state, movie) => (
+  state.has(movie.id)
+    ? state
+    : state.set(movie.id, new Movie(movie))
+);
 
 // Reducer
 export default function reducer(state = initialState, action) {
   const cases = {};
   cases[ADD] = () => !action.movie ? state : reducerAdd(state, action.movie);
   cases[REMOVE] = () => state.remove(action.movieId);
-  cases[TOGGLE_WATCHED] = () => state.update(action.movieId, movie => movie.set('watched', !movie.isWatched()));
-  cases[CLEAR_WATCHED] = () => state.filter(movie => !movie.getWatched());
+  cases[TOGGLE_WATCHED] = () => state.update(action.movieId, movie => movie.set('watched', !movie.get('watched')));
+  cases[CLEAR_WATCHED] = () => state.filter(movie => !movie.get('watched'));
 
   return switchcase(cases)(state)(action.type);
 }

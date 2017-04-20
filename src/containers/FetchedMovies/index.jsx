@@ -19,7 +19,7 @@ const FetchedMovies = ({
           >
             <div>
               <p>
-                Title: {movie.getTitle()}
+                Title: {movie.get('title')}
               </p>
               <img src={movie.get('poster')} alt={`${movie.title} Poster`} />
             </div>
@@ -36,7 +36,7 @@ FetchedMovies.propTypes = {
   movies: PropTypes.instanceOf(MovieMap).isRequired,
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   movies: selector.getMovies(state),
 });
 

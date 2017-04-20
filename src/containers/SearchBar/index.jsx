@@ -40,7 +40,7 @@ SearchBar.propTypes = {
   fetchMovies: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   value: selector.getSearchValue(state),
 });
 

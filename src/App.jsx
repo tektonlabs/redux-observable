@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import SearchBar from 'containers/SearchBar';
 import FetchedMovies from 'containers/FetchedMovies';
 import ToWatchList from 'containers/ToWatchList';
+import Filters from 'containers/Filters';
 
 const App = ({ className }) => {
   return (
@@ -13,7 +14,10 @@ const App = ({ className }) => {
         justifyContent: 'space-between'
       }}>
         <FetchedMovies />
-        <ToWatchList />
+        <div>
+          <ToWatchList />
+          <Filters />
+        </div>
       </div>
     </div>
   );

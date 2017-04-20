@@ -1,17 +1,12 @@
-import Immutable from 'immutable';
+import { Record } from 'immutable';
 
-const MovieRecord = Immutable.Record({
+const Movie = Record({
   id: null,
-  title: '',
+  title: 'Untitled',
   type: '',
   year: '',
   poster: '',
   watched: false,
 });
-
-class Movie extends MovieRecord {
-  getTitle = () => this.get('title') || 'Untitled';
-  isWatched = () => this.get('watched');
-}
 
 export default Movie;
