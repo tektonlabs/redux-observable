@@ -5,11 +5,23 @@ import switchcase from 'utils/switchcase';
 // Initial State
 const initialState = new MovieMap();
 
-//Selectors
-const rootSelector = state => state.get('movies');
+// Selectors
+const getMovies = state => state.get('movies');
 
+/*const getMoviesByFilter = createSelector(
+  getMovies,
+  getFilter,
+  (movies, filter) => {
+    return (
+      filter === ALL ? movies :
+      filter === TO_WATCH ? movies.filter(movie => !movie.get('watched')) :
+      movies.filter(movie => movie.get('watched'))
+    );
+  }
+);
+*/
 export const selector = {
-  getMovies: rootSelector,
+  getMovies,
 };
 
 // Actions
@@ -39,7 +51,7 @@ export const clearWatchedMovies = () => ({
 });
 
 // Reducer Functions
-const reducerAdd = (state, movie) => (
+const onAdd = (state, movie) => (
   state.has(movie.id)
     ? state
     : state.set(movie.id, new Movie(movie))
@@ -48,8 +60,8 @@ const reducerAdd = (state, movie) => (
 // Reducer
 export default function reducer(state = initialState, action) {
   const cases = {};
-  cases[ADD] = () => !action.movie ? state : reducerAdd(state, action.movie);
-  cases[REMOVE] = () => state.remove(action.movieId);
+  cases[ADD] = () => !action.movie ? state : onAdd(state, action.movie);
+  cases[REMOVE] = () => state.delete(action.movieId);
   cases[TOGGLE_WATCHED] = () => state.update(action.movieId, movie => movie.set('watched', !movie.get('watched')));
   cases[CLEAR_WATCHED] = () => state.filter(movie => !movie.get('watched'));
 

@@ -14,7 +14,7 @@ const InitialState = new Record({
   phase: 'init',
 });
 
-//Selectors
+// Selectors
 const rootSelector = state => state.get('searchResults');
 const getSearchValue = createSelector(rootSelector, state => state.get('searchValue'));
 const getMovies = createSelector(rootSelector, state => state.get('movies'));
@@ -90,13 +90,13 @@ const fetchMoviesCancelEpic = action$ => (
     .mapTo(fetchMoviesCancelDone())
 );
 
-export const searchResultsEpic = combineEpics(
+export const epic = combineEpics(
   fetchMoviesEpic,
   fetchMoviesCancelEpic
 );
 
 // Reducer Functions
-const onFetchSuccess = (state, movies) => {
+const onFetchMoviesSuccess = (state, movies) => {
   const newMovies = {};
 
   movies.forEach((movie) => {
@@ -116,7 +116,7 @@ export default function reducer(state = new InitialState(), action) {
   cases[UPDATE_SEARCH_VALUE] = () => state.set('searchValue', action.value);
   cases[CLEAR_MOVIES] = () => state.set('movies', new MovieMap());
   cases[FETCH_MOVIES] = () => state.set('phase', 'loading');
-  cases[FETCH_MOVIES_SUCCESS] = () => !action.movies ? state : onFetchSuccess(state, action.movies);
+  cases[FETCH_MOVIES_SUCCESS] = () => !action.movies ? state : onFetchMoviesSuccess(state, action.movies);
   cases[FETCH_MOVIES_CANCEL] = () => state.set('phase', 'cancel');
   cases[FETCH_MOVIES_CANCEL_DONE] = () => state.set('phase', 'init');
   cases[FETCH_MOVIES_ERROR] = () => (

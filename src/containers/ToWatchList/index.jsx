@@ -46,7 +46,7 @@ ToWatchList.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  movies: selector.getMovies(state),
+  movies: selector.getMoviesByFilter(state),
 });
 
 const mapDispatchToProps = {

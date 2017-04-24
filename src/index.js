@@ -8,13 +8,15 @@ import { routerReducer, routerMiddleware as createRouterMiddleware } from 'react
 import { createEpicMiddleware, combineEpics } from 'redux-observable';
 import { combineReducers } from 'redux-immutable';
 import reducers from './store/reducers';
-import { searchResultsEpic } from 'modules/SearchResults';
+import { epic as moviesEpic } from 'modules/Movies';
+import { epic as searchResultsEpic } from 'modules/SearchResults';
 import Routes from './Routes';
 
 const history = createHistory()
 
 const routerMiddleware = createRouterMiddleware(history)
 const epicMiddleware = createEpicMiddleware(combineEpics(
+  moviesEpic,
   searchResultsEpic
 ));
 

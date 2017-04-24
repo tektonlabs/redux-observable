@@ -1,4 +1,3 @@
-import Immutable from 'immutable';
 import Movie from 'models/Movie';
 import MovieMap from 'models/MovieMap';
 import reducer, {

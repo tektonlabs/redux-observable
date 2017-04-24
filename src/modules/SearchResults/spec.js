@@ -1,92 +1,100 @@
-import Immutable from 'immutable';
+import { Record } from 'immutable';
 import Movie from 'models/Movie';
 import MovieMap from 'models/MovieMap';
 import reducer, {
-  updateSearchResults,
-  clearSearchResults,
+  updateSearchValue,
+  clearMovies,
+  fetchMovies,
+  fetchMoviesSuccess,
+  fetchMoviesCancel,
+  fetchMoviesCancelDone,
+  fetchMoviesError,
 } from './index';
 
-describe('SearchList module', () => {
-  it('adds movies to the search results', () => {
-    const state = new MovieMap();
+describe('SearchList reducer', () => {
+  it('updates the search value', () => {
+    const StateRecord = new Record({
+      searchValue: '',
+    });
 
-    const action = updateSearchResults([
-      {
-        id: '1',
-        title: 'Test Movie',
-      },
-      {
-        id: '2',
-        title: 'Test Movie',
-      },
-      {
-        id: '3',
-        title: 'Test Movie',
-      },
-      {
-        id: '4',
-        title: 'Test Movie',
-      },
-      {
-        id: '5',
-        title: 'Test Movie',
-      },
-    ]);
+    const state = new StateRecord();
 
-    const nextState = new MovieMap({
-      '1': new Movie({
-        id: '1',
-        title: 'Test Movie',
-      }),
-      '2': new Movie({
-        id: '2',
-        title: 'Test Movie',
-      }),
-      '3': new Movie({
-        id: '3',
-        title: 'Test Movie',
-      }),
-      '4': new Movie({
-        id: '4',
-        title: 'Test Movie',
-      }),
-      '5': new Movie({
-        id: '5',
-        title: 'Test Movie',
-      }),
+    const action = updateSearchValue('search test');
+
+    const nextState = new StateRecord({
+      searchValue: 'search test'
     });
 
     expect(reducer(state, action)).toEqual(nextState);
   });
+/*
+  it('clears all movies', () => {
+    const state =
 
-  it('clears all from the search results', () => {
-    const state = new MovieMap({
-      '1': new Movie({
-        id: '1',
-        title: 'Test Movie',
-      }),
-      '2': new Movie({
-        id: '2',
-        title: 'Test Movie',
-      }),
-      '3': new Movie({
-        id: '3',
-        title: 'Test Movie',
-      }),
-      '4': new Movie({
-        id: '4',
-        title: 'Test Movie',
-      }),
-      '5': new Movie({
-        id: '5',
-        title: 'Test Movie',
-      }),
-    });
+    const action =
 
-    const action = clearSearchResults();
+    const nextState =
 
-    const newState = new MovieMap();
-
-    expect(reducer(state, action)).toEqual(newState);
+    expect(reducer(state, action)).toEqual(nextState);
   });
+
+  it('fetches movies setting the phase to "loading"', () => {
+    const state =
+
+    const action =
+
+    const nextState =
+
+    expect(reducer(state, action)).toEqual(nextState);
+  });
+
+  it('handles successfully fetching movies', () => {
+    const state =
+
+    const action =
+
+    const nextState =
+
+    expect(reducer(state, action)).toEqual(nextState);
+  });
+
+  it('handles successfully fetching movies', () => {
+    const state =
+
+    const action =
+
+    const nextState =
+
+    expect(reducer(state, action)).toEqual(nextState);
+  });
+
+  it('handles fetching movies cancellation', () => {
+    const state =
+
+    const action =
+
+    const nextState =
+
+    expect(reducer(state, action)).toEqual(nextState);
+  });
+
+  it('handles changing the cancellation phase to "init" when it\'s done', () => {
+    const state =
+
+    const action =
+
+    const nextState =
+
+    expect(reducer(state, action)).toEqual(nextState);
+  });
+
+  it('handles fetching movies errors', () => {
+    const state =
+
+    const action =
+
+    const nextState =
+
+    expect(reducer(state, action)).toEqual(nextState);
+  });*/
 });

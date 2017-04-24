@@ -8,7 +8,7 @@ const history = createHistory();
 
 const Routes = () => (
   <ConnectedRouter history={history}>
-    <Route exact path="/:filter" component={App} />
+    <Route exact path="/:filter?" component={App} />
   </ConnectedRouter>
 );
 

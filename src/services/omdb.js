@@ -12,13 +12,13 @@ class OMDbService {
     });
 
     if (!response.ok) {
-      throw new Error(`OMDbService getMoviesTest failed, HTTP status ${response.status}`);
+      throw new Error(`OMDbService searchMovies failed, HTTP status ${response.status}`);
     }
 
     const data = await response.json();
 
     if (data.Error) {
-      throw new Error(`OMDbService getMoviesTest failed, There was an error in the response ${data.Error}`);
+      throw new Error(`OMDbService searchMovies failed, There was an error in the response ${data.Error}`);
     }
 
     const movies = data.Search;
