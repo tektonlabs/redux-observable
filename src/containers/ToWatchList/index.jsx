@@ -1,12 +1,17 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { createSelector } from 'reselect';
 import MovieMap from 'models/MovieMap';
 import {
   toggleMovieWatched,
   removeMovie,
   clearWatchedMovies,
-  selector,
+  selector as moviesSelector,
 } from 'modules/Movies';
+import {
+  constants,
+  selector as filterSelector,
+} from 'modules/Filter';
 import MovieCard from 'components/MovieCard';
 
 const ToWatchList = ({
@@ -46,7 +51,8 @@ ToWatchList.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  movies: selector.getMoviesByFilter(state),
+  movies: moviesSelector.getMovies(state),
+  filter: filterSelector.getFilter(state),
 });
 
 const mapDispatchToProps = {
@@ -55,7 +61,23 @@ const mapDispatchToProps = {
   clearWatchedMovies,
 };
 
+const getMoviesByFilter = createSelector(
+  props => props.movies,
+  props => props.filter,
+  (movies, filter) => (
+    filter === constants.ALL ? movies :
+    filter === constants.TO_WATCH ? movies.filter(movie => !movie.get('watched')) :
+    movies.filter(movie => movie.get('watched'))
+  )
+);
+
+const mergeProps = (stateProps, dispatchProps) => ({
+  movies: getMoviesByFilter(stateProps),
+  ...dispatchProps,
+});
+
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
+  mergeProps
 )(ToWatchList);

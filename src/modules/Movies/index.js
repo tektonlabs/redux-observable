@@ -8,18 +8,6 @@ const initialState = new MovieMap();
 // Selectors
 const getMovies = state => state.get('movies');
 
-/*const getMoviesByFilter = createSelector(
-  getMovies,
-  getFilter,
-  (movies, filter) => {
-    return (
-      filter === ALL ? movies :
-      filter === TO_WATCH ? movies.filter(movie => !movie.get('watched')) :
-      movies.filter(movie => movie.get('watched'))
-    );
-  }
-);
-*/
 export const selector = {
   getMovies,
 };

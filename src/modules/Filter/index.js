@@ -1,5 +1,4 @@
 import { combineEpics } from 'redux-observable';
-import { createSelector } from 'reselect';
 import { CALL_HISTORY_METHOD } from 'react-router-redux';
 import switchcase from 'utils/switchcase';
 

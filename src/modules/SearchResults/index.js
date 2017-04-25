@@ -7,11 +7,27 @@ import MovieMap from 'models/MovieMap';
 import omdbService from 'services/omdb';
 import switchcase from 'utils/switchcase';
 
+// Constants
+const INIT = 'INIT';
+const LOADING = 'LOADING';
+const SUCCESS = 'SUCCESS';
+const CANCEL = 'CANCEL';
+const ERROR = 'ERROR';
+
+export const constants = {
+  INIT,
+  LOADING,
+  SUCCESS,
+  CANCEL,
+  ERROR,
+};
+
 // Initial State
 const InitialState = new Record({
   searchValue: '',
   movies: new MovieMap(),
-  phase: 'init',
+  phase: INIT,
+  error: '',
 });
 
 // Selectors
@@ -73,7 +89,7 @@ const fetchMoviesEpic = (action$, store) => (
   action$.ofType(FETCH_MOVIES)
     .debounceTime(500)
     .switchMap(action =>
-      getPhase(store.getState()) === 'cancel'
+      getPhase(store.getState()) === CANCEL
         ? Observable.of(fetchMoviesCancelDone())
         : Observable.from(omdbService.searchMovies(action.searchValue))
             .map(movies => fetchMoviesSuccess(movies))
@@ -106,7 +122,7 @@ const onFetchMoviesSuccess = (state, movies) => {
   return (
     state
       .update('movies', movies => movies.clear().merge(newMovies))
-      .set('phase', 'success')
+      .set('phase', SUCCESS)
   );
 };
 
@@ -115,14 +131,15 @@ export default function reducer(state = new InitialState(), action) {
   const cases = {};
   cases[UPDATE_SEARCH_VALUE] = () => state.set('searchValue', action.value);
   cases[CLEAR_MOVIES] = () => state.set('movies', new MovieMap());
-  cases[FETCH_MOVIES] = () => state.set('phase', 'loading');
+  cases[FETCH_MOVIES] = () => state.set('phase', LOADING);
   cases[FETCH_MOVIES_SUCCESS] = () => !action.movies ? state : onFetchMoviesSuccess(state, action.movies);
-  cases[FETCH_MOVIES_CANCEL] = () => state.set('phase', 'cancel');
-  cases[FETCH_MOVIES_CANCEL_DONE] = () => state.set('phase', 'init');
+  cases[FETCH_MOVIES_CANCEL] = () => state.set('phase', CANCEL);
+  cases[FETCH_MOVIES_CANCEL_DONE] = () => state.set('phase', INIT);
   cases[FETCH_MOVIES_ERROR] = () => (
     state
       .set('movies', new MovieMap())
-      .set('phase', 'error')
+      .set('phase', ERROR)
+      .set('error', action.error)
   );
 
   return switchcase(cases)(state)(action.type);

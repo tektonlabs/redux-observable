@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
-import { selector, constants } from 'modules/Movies';
+import { selector, constants } from 'modules/Filter';
 
 const Filters = ({ filter, push }) => (
   <div>

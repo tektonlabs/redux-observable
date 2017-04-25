@@ -4,23 +4,23 @@ import SearchBar from 'containers/SearchBar';
 import FetchedMovies from 'containers/FetchedMovies';
 import ToWatchList from 'containers/ToWatchList';
 import Filters from 'containers/Filters';
-import { setMoviesFilter } from 'modules/Movies';
+import { setFilter } from 'modules/Filter';
 
 class App extends PureComponent {
   static propTypes = {
     history: PropTypes.object,
     location: PropTypes.object,
     match: PropTypes.object,
-    setMoviesFilter: PropTypes.func,
+    setFilter: PropTypes.func,
   };
 
   componentDidMount() {
     const {
       location,
-      setMoviesFilter
+      setFilter
     } = this.props;
 
-    setMoviesFilter(location.pathname);
+    setFilter(location.pathname);
   }
 
   render() {
@@ -44,7 +44,7 @@ class App extends PureComponent {
 }
 
 const mapDispatchToProps = {
-  setMoviesFilter,
+  setFilter,
 };
 
 export default connect(
