@@ -12,7 +12,7 @@ import {
   constants,
   selector as filterSelector,
 } from 'modules/Filter';
-import MovieCard from 'components/MovieCard';
+import ListMovieCard from 'components/ListMovieCard';
 
 const ToWatchList = ({
   movies,
@@ -26,7 +26,7 @@ const ToWatchList = ({
       <div>
         <ul>
           {movies.valueSeq().map(movie => (
-            <MovieCard
+            <ListMovieCard
               key={movie.get('id')}
               movie={movie}
               ontoggleMovieWatched={() => { toggleMovieWatched(movie.get('id')); }}

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import MovieMap from 'models/MovieMap';
 import { selector } from 'modules/SearchResults';
 import { addMovie } from 'modules/Movies';
+import FetchedMovieCard from 'components/FetchedMovieCard';
 
 const FetchedMovies = ({
   movies,
@@ -13,17 +14,11 @@ const FetchedMovies = ({
     {movies.isEmpty() ? <p>No results found</p> : (
       <ul>
         {movies.valueSeq().map(movie => (
-          <li
+          <FetchedMovieCard
             key={movie.get('id')}
-            onClick={() => addMovie(movie)}
-          >
-            <div>
-              <p>
-                Title: {movie.get('title')}
-              </p>
-              <img src={movie.get('poster')} alt={`${movie.title} Poster`} />
-            </div>
-          </li>
+            movie={movie}
+            onAddMovie={() => { addMovie(movie); }}
+          />
         ))}
       </ul>
     )}
