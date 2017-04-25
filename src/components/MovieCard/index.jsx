@@ -1,23 +1,60 @@
-import React, { PropTypes } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import Movie from 'models/Movie';
+import './styles.css';
+import noPosterAvailable from './assets/no-poster-available.png';
 
-const MovieCard = ({
-  movie,
-}) => (
-  <div style={{ opacity: movie.get('watched') ? '0.5' : '1' }}>
-    <p>
-      Title: {movie.get('title')}
-    </p>
-    <img src={movie.get('poster')} alt={`${movie.title} Poster`} />
-  </div>
-);
+class MovieCard extends PureComponent {
+  static propTypes = {
+    movie: PropTypes.instanceOf(Movie).isRequired,
+  };
 
-MovieCard.displayName = 'MovieCard';
+  state = {
+    poster: this.props.movie.get('poster'),
+  };
 
-MovieCard.propTypes = {
-  movie: PropTypes.instanceOf(Movie).isRequired,
-};
+  onPosterError = () => {
+    this.setState({
+      poster: noPosterAvailable,
+    });
+  };
 
+  render() {
+    const {
+      movie,
+    } = this.props;
+    console.log(movie);
+    const {
+      poster,
+    } = this.state;
 
+    const isWatched = movie.get('watched');
+
+    return (
+      <div className={`moviecard ${isWatched ? 'is-watched' : ''}`}>
+        <div className="moviecardImageWrapper">
+          <img
+            src={poster}
+            className="moviecardImage"
+            alt={`${movie.title} Poster`}
+            onError={this.onPosterError}
+          />
+        </div>
+        <div className="moviecardInfo">
+          <p className="moviecardTitle">
+            Title: {movie.get('title')}
+          </p>
+          <div className="moviecardDetails">
+            <p className="moviecardType">
+              Type: {movie.get('type')}
+            </p>
+            <p className="moviecardYear">
+              Year: {movie.get('year')}
+            </p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
 
 export default MovieCard;

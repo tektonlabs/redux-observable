@@ -5,6 +5,7 @@ import FetchedMovies from 'containers/FetchedMovies';
 import ToWatchList from 'containers/ToWatchList';
 import Filters from 'containers/Filters';
 import { setFilter } from 'modules/Filter';
+import './App.css';
 
 class App extends PureComponent {
   static propTypes = {
@@ -27,11 +28,7 @@ class App extends PureComponent {
     return (
       <div>
         <SearchBar />
-        <div style={{
-          display: 'flex',
-          alignItems: 'flex-start',
-          justifyContent: 'space-between'
-        }}>
+        <div>
           <FetchedMovies />
           <div>
             <ToWatchList />
