@@ -87,7 +87,8 @@ export const fetchMoviesError = (error) => ({
 // Epics
 const fetchMoviesEpic = (action$, store) => (
   action$.ofType(FETCH_MOVIES)
-    .debounceTime(500)
+    .filter(action => action.searchValue.length >= 3)
+    .debounceTime(300)
     .switchMap(action =>
       getPhase(store.getState()) === CANCEL
         ? Observable.of(fetchMoviesCancelDone())
@@ -102,7 +103,7 @@ const fetchMoviesEpic = (action$, store) => (
 
 const fetchMoviesCancelEpic = action$ => (
   action$.ofType(FETCH_MOVIES_CANCEL)
-    .debounceTime(500)
+    .debounceTime(300)
     .mapTo(fetchMoviesCancelDone())
 );
 

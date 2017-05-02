@@ -2,6 +2,7 @@ const OMDB_ENDPOINT = 'http://www.omdbapi.com';
 
 class OMDbService {
   async searchMovies(searchValue) {
+    console.log('gets here at least');
     const url = `${OMDB_ENDPOINT}/?s=${searchValue}`;
 
     const response = await fetch(url, {
@@ -16,7 +17,7 @@ class OMDbService {
     }
 
     const data = await response.json();
-
+    console.log(data);
     if (data.Error) {
       throw new Error(`OMDbService searchMovies failed, There was an error in the response ${data.Error}`);
     }
