@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43 (38999) - http://www.bohemiancoding.com/sketch -->
+    <title>icon/explore/inactive</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-opacity="0.5">
+        <g id="icon/explore/inactive" stroke="#000000" stroke-width="2">
+            <path d="M8.99984043,3.37074123 C8.16127516,2.52536179 6.97350485,2 5.75,2 C3.35729276,2 1.5,3.83649806 1.5,6.22610294 C1.5,6.9870753 1.69171138,7.71787762 2.06463977,8.44723674 C2.54697834,9.39057613 3.30028602,10.3040513 4.54925669,11.5504164 C4.97088194,11.971162 7.48579821,14.3711494 8.29313399,15.1779357 L9,15.8843206 L9.70686601,15.1779357 C10.5142018,14.3711494 13.0291181,11.971162 13.4507433,11.5504164 C14.699714,10.3040513 15.4530217,9.39057613 15.9353602,8.44723674 C16.3082886,7.71787762 16.5,6.9870753 16.5,6.22610294 C16.5,3.83649806 14.6427072,2 12.25,2 C11.0257389,2 9.83819428,2.52525226 8.99984043,3.37074123 Z" id="Shape"></path>
+        </g>
+    </g>
+</svg>

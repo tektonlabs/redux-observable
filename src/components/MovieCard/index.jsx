@@ -22,7 +22,7 @@ class MovieCard extends PureComponent {
     const {
       movie,
     } = this.props;
-    console.log(movie);
+
     const {
       poster,
     } = this.state;

@@ -6,17 +6,17 @@ import { selector, constants } from 'modules/Filter';
 const Filters = ({ filter, push }) => (
   <div>
     <ul>
-      <li onClick={() => push('/')}>
+      <li onClick={() => { push('/'); }}>
         <button disabled={filter === constants.ALL}>
           ALL
         </button>
       </li>
-      <li onClick={() => push('/to-watch')}>
+      <li onClick={() => { push('/to-watch'); }}>
         <button disabled={filter === constants.TO_WATCH}>
           TO WATCH
         </button>
       </li>
-      <li onClick={() => push('/watched')}>
+      <li onClick={() => { push('/watched'); }}>
         <button disabled={filter === constants.WATCHED}>
           WATCHED
         </button>
