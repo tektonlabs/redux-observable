@@ -1,28 +1,29 @@
 import React, { PropTypes } from 'react';
 import './styles.css';
 
-const Tab = ({
+const NavTab = ({
   name,
   label,
   isActive,
   onSetActiveTab,
 }) => (
   <button
-    className={`tab ${isActive ? 'is-active' : ''}`}
+    className={`nav-tab ${isActive ? 'is-active' : ''}`}
     onClick={onSetActiveTab}
     disabled={isActive}
   >
-    <span className="tab-label">{label}</span>
+    <span className={`nav-tab-icon is-${name}`}></span>
+    <span className="nav-tab-label">{label}</span>
   </button>
 );
 
-Tab.displayName = 'Tab';
+NavTab.displayName = 'NavTab';
 
-Tab.propTypes = {
+NavTab.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   isActive: PropTypes.bool.isRequired,
   onSetActiveTab: PropTypes.func.isRequired,
 };
 
-export default Tab;
+export default NavTab;

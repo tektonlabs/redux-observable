@@ -1,9 +1,9 @@
 import { combineEpics } from 'redux-observable';
-import { epic as filterEpic } from 'modules/Filter';
+import { epic as activeFilterEpic } from 'modules/ActiveFilter';
 import { epic as searchResultsEpic } from 'modules/SearchResults';
 
 const epics = combineEpics(
-  filterEpic,
+  activeFilterEpic,
   searchResultsEpic
 );
 

@@ -1,0 +1,44 @@
+.nav-tab {
+  background: transparent;
+  border-bottom: 0;
+  border-left: 0;
+  border-right: 0;
+  border-top: 1px solid #E5E5E5;
+  cursor: pointer;
+  flex-grow: 1;
+  height: 48px;
+}
+
+.nav-tab-icon {
+  background-repeat: no-repeat;
+  background-size: 100%;
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+}
+
+.nav-tab-icon.is-EXPLORE {
+  background-image: url('./assets/explore-icon.svg');
+}
+
+.nav-tab-icon.is-SAVED {
+  background-image: url('./assets/saved-icon.svg');
+}
+
+.nav-tab.is-active .nav-tab-icon.is-EXPLORE {
+  background-image: url('./assets/explore-icon-active.svg');
+}
+
+.nav-tab.is-active .nav-tab-icon.is-SAVED {
+  background-image: url('./assets/saved-icon-active.svg');
+}
+
+.nav-tab-label {
+  color: #7F7F7F;
+  display: block;
+  font-size: 10px;
+}
+
+.nav-tab.is-active .nav-tab-label {
+  color: #E91E63;
+}

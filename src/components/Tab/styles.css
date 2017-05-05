@@ -1,16 +1,15 @@
-.nav-tab {
-  height: 48px;
-  width: 50%;
-}
-
-.nav-tab.is-active {
+.tab {
 
 }
 
-.nav-tab-icon {
+.tab.is-active {
 
 }
 
-.nav-tab-label {
+.tab-label {
+
+}
+
+.tab.is-active .tab-label {
 
 }

@@ -1,12 +1,12 @@
 import searchResults from 'modules/SearchResults';
 import movies from 'modules/Movies';
-import filter from 'modules/Filter';
+import activeFilter from 'modules/ActiveFilter';
 import activeTab from 'modules/ActiveTab';
 
 const reducers = {
   searchResults,
   movies,
-  filter,
+  activeFilter,
   activeTab,
 };
 

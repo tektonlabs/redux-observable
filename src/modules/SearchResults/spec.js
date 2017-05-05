@@ -12,7 +12,7 @@ import reducer, {
   fetchMoviesError,
 } from './index';
 
-describe('SearchList reducer', () => {
+describe('SearchResults reducer', () => {
   it('updates the search value', () => {
     const StateRecord = new Record({
       searchValue: '',

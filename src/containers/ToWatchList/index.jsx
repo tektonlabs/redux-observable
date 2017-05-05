@@ -10,8 +10,8 @@ import {
 } from 'modules/Movies';
 import {
   constants,
-  selector as filterSelector,
-} from 'modules/Filter';
+  selector as activeFilterSelector,
+} from 'modules/ActiveFilter';
 import ListMovieCard from 'components/ListMovieCard';
 
 const ToWatchList = ({
@@ -52,7 +52,7 @@ ToWatchList.propTypes = {
 
 const mapStateToProps = state => ({
   movies: moviesSelector.getMovies(state),
-  filter: filterSelector.getFilter(state),
+  activeFilter: activeFilterSelector.getActiveFilter(state),
 });
 
 const mapDispatchToProps = {
@@ -63,10 +63,10 @@ const mapDispatchToProps = {
 
 const getMoviesByFilter = createSelector(
   props => props.movies,
-  props => props.filter,
-  (movies, filter) => (
-    filter === constants.ALL ? movies :
-    filter === constants.TO_WATCH ? movies.filter(movie => !movie.get('watched')) :
+  props => props.activeFilter,
+  (movies, activeFilter) => (
+    activeFilter === constants.ALL ? movies :
+    activeFilter === constants.TO_WATCH ? movies.filter(movie => !movie.get('watched')) :
     movies.filter(movie => movie.get('watched'))
   )
 );

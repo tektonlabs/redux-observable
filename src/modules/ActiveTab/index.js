@@ -31,7 +31,7 @@ export const setActiveTab = (tab) => ({
 // Reducer
 export default function reducer(state = initialState, action) {
   const cases = {};
-  cases[SET] = () => { console.log('action: ', action); return action.tab || state; };
+  cases[SET] = () => action.tab || state;
 
   return switchcase(cases)(state)(action.type);
 }

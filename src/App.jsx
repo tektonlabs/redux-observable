@@ -1,11 +1,12 @@
 import React, { PureComponent, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import SearchBar from 'containers/SearchBar';
 import FetchedMovies from 'containers/FetchedMovies';
 import ToWatchList from 'containers/ToWatchList';
 import Filters from 'containers/Filters';
-import NavBar from 'containers/NavBar';
-import { setFilter } from 'modules/Filter';
+import Navigation from 'containers/Navigation';
+import Header from 'components/Header';
+import TabContent from 'components/TabContent';
+import { setActiveFilter } from 'modules/ActiveFilter';
 import {
   selector as activeTabSelector,
   constants as activeTabConstants,
@@ -18,16 +19,16 @@ class App extends PureComponent {
     location: PropTypes.object.isRequired,
     match: PropTypes.object.isRequired,
     activeTab: PropTypes.string.isRequired,
-    setFilter: PropTypes.func.isRequired,
+    setActiveFilter: PropTypes.func.isRequired,
   };
 
   componentDidMount() {
     const {
       location,
-      setFilter
+      setActiveFilter,
     } = this.props;
 
-    setFilter(location.pathname);
+    setActiveFilter(location.pathname);
   }
 
   render() {
@@ -35,22 +36,26 @@ class App extends PureComponent {
       activeTab,
     } = this.props;
 
-    const isSearchActive = activeTab === activeTabConstants.EXPLORE;
-    const isWatchListActive = activeTab === activeTabConstants.SAVED;
+    const isExploreActive = activeTab === activeTabConstants.EXPLORE;
+    const isSavedActive = activeTab === activeTabConstants.SAVED;
 
     return (
-      <div className="app-container">
-        <div
-          className={`search-container ${isSearchActive ? 'is-active' : '' }`}
+      <div>
+        <Header
+          hasSearch={isExploreActive}
+        />
+        <TabContent
+          isActive={isExploreActive}
         >
-          <SearchBar />
           <FetchedMovies />
-        </div>
-        <div className={`watch-list-container ${isWatchListActive ? 'is-active' : ''}`}>
+        </TabContent>
+        <TabContent
+          isActive={isSavedActive}
+        >
           <Filters />
           <ToWatchList />
-        </div>
-        <NavBar />
+        </TabContent>
+        <Navigation />
       </div>
     );
   }
@@ -61,7 +66,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  setFilter,
+  setActiveFilter,
 };
 
 export default connect(

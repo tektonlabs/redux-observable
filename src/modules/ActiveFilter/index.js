@@ -17,35 +17,35 @@ export const constants = {
 const initialState = ALL;
 
 // Selectors
-const getFilter = state => state.get('filter');
+const getActiveFilter = state => state.get('activeFilter');
 
 export const selector = {
-  getFilter,
+  getActiveFilter,
 };
 
 // Actions
-const SET = 'redux-observable/filter/SET';
+const SET = 'redux-observable/active-filter/SET';
 
 // Action Creators
-export const setFilter = (filter) => ({
+export const setActiveFilter = (filter) => ({
   type: SET,
   filter,
 });
 
 // Epics
-const setFilterEpic = (action$, store) => (
+const setActiveFilterEpic = (action$, store) => (
   action$.ofType(CALL_HISTORY_METHOD)
     .map(action =>
-      setFilter(action.payload.args[0])
+      setActiveFilter(action.payload.args[0])
     )
 );
 
 export const epic = combineEpics(
-  setFilterEpic,
+  setActiveFilterEpic,
 );
 
 // Reducer Functions
-const onSetFilter = (state, filter) => {
+const onSetActiveFilter = (state, filter) => {
   const filterMap = {
     '/': ALL,
     '/to-watch': TO_WATCH,
@@ -62,7 +62,7 @@ const onSetFilter = (state, filter) => {
 // Reducer
 export default function reducer(state = initialState, action) {
   const cases = {};
-  cases[SET] = () => onSetFilter(state, action.filter);
+  cases[SET] = () => onSetActiveFilter(state, action.filter);
 
   return switchcase(cases)(state)(action.type);
 }

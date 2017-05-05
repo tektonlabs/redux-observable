@@ -1,39 +1,46 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
-import { selector, constants } from 'modules/Filter';
+import { selector, constants } from 'modules/ActiveFilter';
+import TabBar from 'components/TabBar';
 
-const Filters = ({ filter, push }) => (
-  <div>
-    <ul>
-      <li onClick={() => { push('/'); }}>
-        <button disabled={filter === constants.ALL}>
-          ALL
-        </button>
-      </li>
-      <li onClick={() => { push('/to-watch'); }}>
-        <button disabled={filter === constants.TO_WATCH}>
-          TO WATCH
-        </button>
-      </li>
-      <li onClick={() => { push('/watched'); }}>
-        <button disabled={filter === constants.WATCHED}>
-          WATCHED
-        </button>
-      </li>
-    </ul>
-  </div>
+const tabBarData = [
+  {
+    name: constants.ALL,
+    label: 'ALL',
+  },
+  {
+    name: constants.TO_WATCH,
+    label: 'TO WATCH',
+  },
+  {
+    name: constants.WATCHED,
+    label: 'WATCHED',
+  },
+];
+
+const pushMap = {};
+pushMap[constants.ALL] = '/';
+pushMap[constants.TO_WATCH] = '/to-watch';
+pushMap[constants.WATCHED] = '/watched';
+
+const Filters = ({ activeFilter, push }) => (
+  <TabBar
+    activeTab={activeFilter}
+    setActiveTab={(tabName) => { push(pushMap[tabName]); }}
+    data={tabBarData}
+  />
 );
 
 Filters.displayName = 'Filters';
 
 Filters.propTypes = {
-  filter: PropTypes.string.isRequired,
+  activeFilter: PropTypes.string.isRequired,
   push: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  filter: selector.getFilter(state),
+  activeFilter: selector.getActiveFilter(state),
 });
 
 const mapDispatchToProps = {

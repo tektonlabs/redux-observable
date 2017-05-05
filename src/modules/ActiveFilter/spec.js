@@ -1,13 +1,13 @@
 import reducer, {
   constants,
-  setFilter,
+  setActiveFilter,
 } from './index';
 
-describe('Filter reducer', () => {
+describe('ActiveFilter reducer', () => {
   it('sets the active filter according to the url', () => {
     const state = constants.ALL;
-    const action = setFilter('/watched')
-    const nextState = constants.WATCHED
+    const action = setActiveFilter('/watched');
+    const nextState = constants.WATCHED;
 
     expect(reducer(state, action)).toEqual(nextState);
   });

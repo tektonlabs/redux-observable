@@ -5,9 +5,9 @@ import {
   selector,
   constants,
 } from 'modules/ActiveTab';
-import TabBar from 'components/TabBar';
+import NavBar from 'components/NavBar';
 
-const tabsData = [
+const navBarData = [
   {
     name: constants.EXPLORE,
     label: 'Explore',
@@ -18,20 +18,20 @@ const tabsData = [
   },
 ];
 
-const NavBar = ({
+const Navigation = ({
   activeTab,
   setActiveTab,
 }) => (
-  <TabBar
+  <NavBar
     activeTab={activeTab}
     setActiveTab={setActiveTab}
-    data={tabsData}
+    data={navBarData}
   />
 );
 
-NavBar.displayName = 'NavBar';
+Navigation.displayName = 'Navigation';
 
-NavBar.propTypes = {
+Navigation.propTypes = {
   activeTab: PropTypes.string.isRequired,
   setActiveTab: PropTypes.func.isRequired,
 };
@@ -47,4 +47,4 @@ const mapDispatchToProps = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(NavBar);
+)(Navigation);

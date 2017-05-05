@@ -1,15 +1,15 @@
 import React, { PropTypes } from 'react';
-import Tab from 'components/Tab';
+import NavTab from 'components/NavTab';
 import './styles.css';
 
-const TabBar = ({
+const NavBar = ({
   activeTab,
   setActiveTab,
   data,
 }) => (
-  <div className="tab-bar-container">
+  <div className="nav-bar-container">
     {data.map(tab => (
-      <Tab
+      <NavTab
         key={tab.name}
         name={tab.name}
         label={tab.label}
@@ -20,10 +20,12 @@ const TabBar = ({
   </div>
 );
 
-TabBar.displayName = 'TabBar';
+NavBar.displayName = 'NavBar';
 
-TabBar.propTypes = {
-  className: PropTypes.string,
+NavBar.propTypes = {
+  activeTab: PropTypes.string.isRequired,
+  setActiveTab: PropTypes.func.isRequired,
+  data: PropTypes.array.isRequired,
 };
 
-export default TabBar;
+export default NavBar;
