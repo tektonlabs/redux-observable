@@ -1,9 +1,10 @@
 import React, { PropTypes } from 'react';
 import SearchBar from 'containers/SearchBar';
+import './style.css';
 
 const Header = ({ hasSearch }) => (
-  <div>
-    <h1>Movie App</h1>
+  <div className="header-container">
+    <h1 className="header-title">Movie App</h1>
     {hasSearch && <SearchBar />}
   </div>
 );

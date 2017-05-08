@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.1 (39012) - http://www.bohemiancoding.com/sketch -->
+    <title>icon</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Screens" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="cardv3/towatch" transform="translate(-116.000000, -117.000000)">
+            <g id="movie">
+                <g id="content" transform="translate(101.000000, 0.000000)">
+                    <g id="button" transform="translate(16.000000, 118.000000)">
+                        <g id="icon">
+                            <rect id="container" stroke="#E91E63" x="0" y="0" width="16" height="16" rx="8"></rect>
+                            <polygon id="Shape" fill="#E91E63" points="12 7.42857143 8.57142857 7.42857143 8.57142857 4 7.42857143 4 7.42857143 7.42857143 4 7.42857143 4 8.57142857 7.42857143 8.57142857 7.42857143 12 8.57142857 12 8.57142857 8.57142857 12 8.57142857"></polygon>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

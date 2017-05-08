@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { selector, constants } from 'modules/ActiveFilter';
 import TabBar from 'components/TabBar';
+import Tab from 'components/Tab';
 
 const tabBarData = [
   {
@@ -25,11 +26,17 @@ pushMap[constants.TO_WATCH] = '/to-watch';
 pushMap[constants.WATCHED] = '/watched';
 
 const Filters = ({ activeFilter, push }) => (
-  <TabBar
-    activeTab={activeFilter}
-    setActiveTab={(tabName) => { push(pushMap[tabName]); }}
-    data={tabBarData}
-  />
+  <TabBar>
+    {tabBarData.map(tab => (
+      <Tab
+        key={tab.name}
+        name={tab.name}
+        label={tab.label}
+        isActive={activeFilter === tab.name}
+        onSetActiveTab={() => { push(pushMap[tab.name]); }}
+      />
+    ))}
+  </TabBar>
 );
 
 Filters.displayName = 'Filters';

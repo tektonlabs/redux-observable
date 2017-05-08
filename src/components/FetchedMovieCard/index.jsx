@@ -1,13 +1,16 @@
 import React, { PropTypes } from 'react';
 import Movie from 'models/Movie';
-import MovieCard from 'components/MovieCard';
 
 const FetchedMovieCard = ({
   movie,
   onAddMovie,
 }) => (
   <li>
-    <MovieCard movie={movie} />
+    <button
+      onClick={onAddMovie}
+    >
+      O
+    </button>
   </li>
 );
 

@@ -1,15 +1,22 @@
 .tab {
-
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  flex-basis: 0;
+  flex-grow: 1;
+  height: 48px;
 }
 
 .tab.is-active {
-
+  border-bottom: 3px solid #E91E63;
 }
 
 .tab-label {
-
+  color: #7F7F7F;
+  font-size: 15px;
+  letter-spacing: 1px;
 }
 
 .tab.is-active .tab-label {
-
+  color: #E91E63;
 }

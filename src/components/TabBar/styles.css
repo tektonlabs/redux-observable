@@ -1,3 +1,20 @@
 .tab-bar-container {
+  align-items: flex-start;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
 
+.tab-bar-container.is-tab {
+  -webkit-box-shadow: 0px 7px 10px -5px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 0px 7px 10px -5px rgba(0, 0, 0, 0.4);
+  box-shadow: 0px 7px 10px -5px rgba(0, 0, 0, 0.4);
+}
+
+.tab-bar-container.is-nav {
+  bottom: 0;
+  position: fixed;
+  -webkit-box-shadow: 0px -5px 10px -5px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0px -5px 10px -5px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px -5px 10px -5px rgba(0, 0, 0, 0.5);
 }

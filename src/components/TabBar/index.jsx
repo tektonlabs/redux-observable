@@ -1,29 +1,24 @@
 import React, { PropTypes } from 'react';
-import Tab from 'components/Tab';
 import './styles.css';
 
 const TabBar = ({
-  activeTab,
-  setActiveTab,
-  data,
+  type,
+  children,
 }) => (
-  <div className="tab-bar-container">
-    {data.map(tab => (
-      <Tab
-        key={tab.name}
-        name={tab.name}
-        label={tab.label}
-        isActive={activeTab === tab.name}
-        onSetActiveTab={() => { setActiveTab(tab.name); }}
-      />
-    ))}
+  <div className={`tab-bar-container is-${type}`}>
+    {children}
   </div>
 );
 
 TabBar.displayName = 'TabBar';
 
+TabBar.defaultProps = {
+  type: 'tab',
+};
+
 TabBar.propTypes = {
-  className: PropTypes.string,
+  type: PropTypes.string,
+  children: PropTypes.node.isRequired,
 };
 
 export default TabBar;

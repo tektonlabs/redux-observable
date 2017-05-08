@@ -12,7 +12,7 @@ const NavTab = ({
     onClick={onSetActiveTab}
     disabled={isActive}
   >
-    <span className={`nav-tab-icon is-${name}`}></span>
+    <span className={`nav-tab-icon is-${name}`} />
     <span className="nav-tab-label">{label}</span>
   </button>
 );

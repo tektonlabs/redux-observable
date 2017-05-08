@@ -21,7 +21,6 @@ const ToWatchList = ({
   clearWatchedMovies,
 }) => (
   <div>
-    To Watch Movie List:
     {movies.isEmpty() ? <p>No movies added to your list yet! Add some!</p> : (
       <div>
         <ul>
@@ -34,11 +33,6 @@ const ToWatchList = ({
             />
           ))}
         </ul>
-        <button
-          onClick={() => { clearWatchedMovies(); }}
-        >
-          Clear Watched
-        </button>
       </div>
     )}
   </div>

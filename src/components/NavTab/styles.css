@@ -1,10 +1,11 @@
 .nav-tab {
-  background: transparent;
+  background: #FFFFFF;
   border-bottom: 0;
   border-left: 0;
   border-right: 0;
   border-top: 1px solid #E5E5E5;
   cursor: pointer;
+  flex-basis: 0;
   flex-grow: 1;
   height: 48px;
 }

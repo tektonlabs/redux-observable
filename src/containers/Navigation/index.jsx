@@ -5,7 +5,8 @@ import {
   selector,
   constants,
 } from 'modules/ActiveTab';
-import NavBar from 'components/NavBar';
+import TabBar from 'components/TabBar';
+import NavTab from 'components/NavTab';
 
 const navBarData = [
   {
@@ -22,11 +23,17 @@ const Navigation = ({
   activeTab,
   setActiveTab,
 }) => (
-  <NavBar
-    activeTab={activeTab}
-    setActiveTab={setActiveTab}
-    data={navBarData}
-  />
+  <TabBar type="nav">
+    {navBarData.map(tab => (
+      <NavTab
+        key={tab.name}
+        name={tab.name}
+        label={tab.label}
+        isActive={activeTab === tab.name}
+        onSetActiveTab={() => { setActiveTab(tab.name); }}
+      />
+    ))}
+  </TabBar>
 );
 
 Navigation.displayName = 'Navigation';
