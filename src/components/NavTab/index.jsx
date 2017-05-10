@@ -7,14 +7,10 @@ const NavTab = ({
   isActive,
   onSetActiveTab,
 }) => (
-  <button
-    className={`nav-tab ${isActive ? 'is-active' : ''}`}
-    onClick={onSetActiveTab}
-    disabled={isActive}
-  >
+  <div className="nav-tab">
     <span className={`nav-tab-icon is-${name}`} />
     <span className="nav-tab-label">{label}</span>
-  </button>
+  </div>
 );
 
 NavTab.displayName = 'NavTab';
@@ -22,8 +18,6 @@ NavTab.displayName = 'NavTab';
 NavTab.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
-  isActive: PropTypes.bool.isRequired,
-  onSetActiveTab: PropTypes.func.isRequired,
 };
 
 export default NavTab;

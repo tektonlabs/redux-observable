@@ -1,36 +1,41 @@
-.nav-tab {
+.nav-tab-link {
+  align-items: center;
   background: #FFFFFF;
   border-bottom: 0;
   border-left: 0;
   border-right: 0;
   border-top: 1px solid #E5E5E5;
   cursor: pointer;
+  display: flex;
   flex-basis: 0;
   flex-grow: 1;
+  flex-wrap: wrap;
   height: 48px;
+  justify-content: center;
 }
 
 .nav-tab-icon {
   background-repeat: no-repeat;
   background-size: 100%;
-  display: inline-block;
+  display: block;
   height: 20px;
+  margin: 0 auto;
   width: 20px;
 }
 
-.nav-tab-icon.is-EXPLORE {
+.nav-tab-icon.is-explore {
   background-image: url('./assets/explore-icon.svg');
 }
 
-.nav-tab-icon.is-SAVED {
+.nav-tab-icon.is-saved {
   background-image: url('./assets/saved-icon.svg');
 }
 
-.nav-tab.is-active .nav-tab-icon.is-EXPLORE {
+.nav-tab-link.is-active .nav-tab-icon.is-explore {
   background-image: url('./assets/explore-icon-active.svg');
 }
 
-.nav-tab.is-active .nav-tab-icon.is-SAVED {
+.nav-tab-link.is-active .nav-tab-icon.is-saved {
   background-image: url('./assets/saved-icon-active.svg');
 }
 
@@ -40,6 +45,6 @@
   font-size: 10px;
 }
 
-.nav-tab.is-active .nav-tab-label {
+.nav-tab-link.is-active .nav-tab-label {
   color: #E91E63;
 }

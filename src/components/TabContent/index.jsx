@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import './styles.css';
 
-const TabContent = ({ children, isActive }) => {
+const TabContent = ({ isActive, children }) => {
   return (
     <div className={`tab-content ${isActive ? 'is-active' : ''}`}>
       {children}
@@ -12,8 +12,9 @@ const TabContent = ({ children, isActive }) => {
 TabContent.displayName = 'TabContent';
 
 TabContent.propTypes = {
+  name: PropTypes.string,
+  isActive: PropTypes.bool,
   children: PropTypes.node.isRequired,
-  isActive: PropTypes.bool.isRequired,
 };
 
 export default TabContent;

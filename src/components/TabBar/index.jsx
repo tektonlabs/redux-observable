@@ -5,9 +5,9 @@ const TabBar = ({
   type,
   children,
 }) => (
-  <div className={`tab-bar-container is-${type}`}>
+  <nav className={`tab-bar-container is-${type}`}>
     {children}
-  </div>
+  </nav>
 );
 
 TabBar.displayName = 'TabBar';

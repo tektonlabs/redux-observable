@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 import {
   setActiveTab,
   selector,
@@ -8,31 +9,31 @@ import {
 import TabBar from 'components/TabBar';
 import NavTab from 'components/NavTab';
 
-const navBarData = [
-  {
-    name: constants.EXPLORE,
-    label: 'Explore',
-  },
-  {
-    name: constants.SAVED,
-    label: 'Saved',
-  },
-];
-
 const Navigation = ({
   activeTab,
   setActiveTab,
 }) => (
   <TabBar type="nav">
-    {navBarData.map(tab => (
+    <NavLink
+      className="nav-tab-link"
+      activeClassName="is-active"
+      to="/explore"
+    >
       <NavTab
-        key={tab.name}
-        name={tab.name}
-        label={tab.label}
-        isActive={activeTab === tab.name}
-        onSetActiveTab={() => { setActiveTab(tab.name); }}
+        name={constants.EXPLORE}
+        label="Explore"
       />
-    ))}
+    </NavLink>
+    <NavLink
+      className="nav-tab-link"
+      activeClassName="is-active"
+      to="/saved"
+    >
+      <NavTab
+        name={constants.SAVED}
+        label="Saved"
+      />
+    </NavLink>
   </TabBar>
 );
 
