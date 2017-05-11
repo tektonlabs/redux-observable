@@ -1,5 +1,5 @@
 import { combineEpics } from 'redux-observable';
-import { CALL_HISTORY_METHOD } from 'react-router-redux';
+import { CALL_HISTORY_METHOD, LOCATION_CHANGE, push } from 'react-router-redux';
 import switchcase from 'utils/switchcase';
 
 // Constants
@@ -7,11 +7,26 @@ const ALL = 'ALL';
 const TO_WATCH = 'TO_WATCH';
 const WATCHED = 'WATCHED';
 
+const filtersMap = {};
+filtersMap[ALL] = '/saved/all';
+filtersMap[TO_WATCH] = '/saved/to-watch';
+filtersMap[WATCHED] = '/saved/watched';
+
+const routesMap = {
+  '/saved/all': ALL,
+  '/saved/to-watch': TO_WATCH,
+  '/saved/watched': WATCHED,
+};
+
 export const constants = {
   ALL,
   TO_WATCH,
   WATCHED,
+  filtersMap,
+  routesMap
 };
+
+
 
 // Initial State
 const initialState = ALL;
@@ -36,33 +51,27 @@ export const setActiveFilter = (filter) => ({
 const setActiveFilterEpic = (action$, store) => (
   action$.ofType(CALL_HISTORY_METHOD)
     .map(action =>
-      setActiveFilter(action.payload.args[0])
+      setActiveFilter(routesMap[action.payload.args[0]])
+    )
+);
+
+const matchRouteWithFilter = (action$, store) => (
+  action$.ofType(LOCATION_CHANGE)
+    .filter(action => action.payload.pathname === '/saved')
+    .map(action =>
+      push(filtersMap[store.getState().get('activeFilter')])
     )
 );
 
 export const epic = combineEpics(
   setActiveFilterEpic,
+  matchRouteWithFilter
 );
-
-// Reducer Functions
-const onSetActiveFilter = (state, filter) => {
-  const filterMap = {
-    '/': ALL,
-    '/to-watch': TO_WATCH,
-    '/watched': WATCHED,
-  };
-
-  const filterValue = filterMap[filter];
-
-  return filterValue
-    ? filterValue
-    : state;
-};
 
 // Reducer
 export default function reducer(state = initialState, action) {
   const cases = {};
-  cases[SET] = () => onSetActiveFilter(state, action.filter);
+  cases[SET] = () => action.filter || state;
 
   return switchcase(cases)(state)(action.type);
 }

@@ -1,8 +1,5 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import {
-  constants,
-} from 'modules/ActiveTab';
 import TabBar from 'components/TabBar';
 import NavTab from 'components/NavTab';
 

@@ -1,12 +1,13 @@
 import React, { PropTypes } from 'react';
+import { connect } from 'react-redux';
+import Header from 'components/Header';
+import FetchedMovies from 'containers/FetchedMovies';
 
-const Explore = ({ className, history, location, match }) => {
-  console.log(history);
-  console.log(location);
-  console.log(match);
+const Explore = ({ pathname }) => {
   return (
     <div>
-      Explore
+      <Header hasSearch={pathname === '/explore'} />
+      <FetchedMovies />
     </div>
   );
 };
@@ -14,7 +15,11 @@ const Explore = ({ className, history, location, match }) => {
 Explore.displayName = 'Explore';
 
 Explore.propTypes = {
-  className: PropTypes.string,
+  pathname: PropTypes.string.isRequired,
 };
 
-export default Explore;
+const mapStateToProps = (state, ownProps) => ({
+  pathname: ownProps.location.pathname,
+});
+
+export default connect(mapStateToProps, null)(Explore);

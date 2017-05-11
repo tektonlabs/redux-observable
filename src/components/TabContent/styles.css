@@ -1,8 +1,0 @@
-.tab-content {
-  padding-bottom: 48px;
-  display: none;
-}
-
-.tab-content.is-active {
-  display: block;
-}

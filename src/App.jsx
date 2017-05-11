@@ -1,11 +1,9 @@
 import React, { PropTypes } from 'react';
-import HeaderContainer from 'containers/HeaderContainer';
-import Navigation from 'containers/Navigation';
+import Navigation from 'components/Navigation';
 import './App.css';
 
 const App = ({ children }) => (
   <div>
-    <HeaderContainer />
     {children}
     <Navigation />
   </div>

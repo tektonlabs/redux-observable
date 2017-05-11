@@ -7,6 +7,10 @@
   height: 48px;
 }
 
+.tab:focus {
+  outline: 0;
+}
+
 .tab.is-active {
   border-bottom: 3px solid #E91E63;
 }

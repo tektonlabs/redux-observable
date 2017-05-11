@@ -10,7 +10,6 @@ const Tab = ({
   <button
     className={`tab ${isActive ? 'is-active' : ''}`}
     onClick={onSetActiveTab}
-    disabled={isActive}
   >
     <span className="tab-label">{label}</span>
   </button>

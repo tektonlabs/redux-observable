@@ -20,11 +20,6 @@ const tabBarData = [
   },
 ];
 
-const pushMap = {};
-pushMap[constants.ALL] = '/';
-pushMap[constants.TO_WATCH] = '/to-watch';
-pushMap[constants.WATCHED] = '/watched';
-
 const Filters = ({ activeFilter, push }) => (
   <TabBar>
     {tabBarData.map(tab => (
@@ -33,7 +28,7 @@ const Filters = ({ activeFilter, push }) => (
         name={tab.name}
         label={tab.label}
         isActive={activeFilter === tab.name}
-        onSetActiveTab={() => { push(pushMap[tab.name]); }}
+        onSetActiveTab={() => { push(constants.filtersMap[tab.name]); }}
       />
     ))}
   </TabBar>

@@ -11,6 +11,10 @@ const Header = ({ hasSearch }) => (
 
 Header.displayName = 'Header';
 
+Header.defaultProps = {
+  hasSearch: false,
+}
+
 Header.propTypes = {
   hasSearch: PropTypes.bool.isRequired,
 };

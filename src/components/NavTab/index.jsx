@@ -4,8 +4,6 @@ import './styles.css';
 const NavTab = ({
   name,
   label,
-  isActive,
-  onSetActiveTab,
 }) => (
   <div className="nav-tab">
     <span className={`nav-tab-icon is-${name}`} />
