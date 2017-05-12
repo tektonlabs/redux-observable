@@ -1,0 +1,20 @@
+.empty-watch-list-container {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: center;
+  padding: 0 25px;
+}
+
+.empty-watch-list-text-wrapper {
+  margin-bottom: 10px;
+}
+
+.empty-watch-list-title {
+  color: #4C4C4C;
+  display: block;
+}
+
+.empty-watch-list-message {
+  display: block;
+}

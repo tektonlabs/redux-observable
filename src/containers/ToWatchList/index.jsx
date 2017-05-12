@@ -15,9 +15,13 @@ import {
 } from 'modules/ActiveFilter';
 import MovieList from 'components/MovieList';
 import ListMovieCard from 'components/ListMovieCard';
+import EmptyToWatchList from 'components/EmptyToWatchList';
+import EmptyListMessage from 'components/EmptyListMessage';
 
 const ToWatchList = ({
   movies,
+  allMovies,
+  activeFilter,
   toggleMovieWatched,
   removeMovie,
   clearWatchedMovies,
@@ -25,31 +29,28 @@ const ToWatchList = ({
   go,
 }) => (
   <div>
-    {movies.isEmpty()
-      ? <div className="not-found-container">
-          <span className="not-found-title">No saved movies</span>
-          <span className="not-found-message">Go and find movies you'd like to watch later!</span>
-          <button
-            className="search-button"
-            onClick={() => {
+    {activeFilter === constants.WATCHED && !allMovies.isEmpty() && movies.isEmpty()
+      ? <EmptyListMessage
+          title="No movies in here"
+          message="Go and watch some of your saved movies!"
+        />
+      : movies.isEmpty()
+        ? <EmptyToWatchList
+            onGoExplore={() => {
               push('/explore');
               go();
             }}
-          >
-            <span className="search-icon"></span>
-            Explore
-          </button>
-        </div>
-      : <MovieList>
-          {movies.valueSeq().map(movie => (
-            <ListMovieCard
-              key={movie.get('id')}
-              movie={movie}
-              ontoggleMovieWatched={() => { toggleMovieWatched(movie.get('id')); }}
-              onRemoveMovie={() => { removeMovie(movie.get('id')); }}
-            />
-          ))}
-        </MovieList>
+          />
+        : <MovieList>
+            {movies.valueSeq().map(movie => (
+              <ListMovieCard
+                key={movie.get('id')}
+                movie={movie}
+                ontoggleMovieWatched={() => { toggleMovieWatched(movie.get('id')); }}
+                onRemoveMovie={() => { removeMovie(movie.get('id')); }}
+              />
+            ))}
+          </MovieList>
     }
   </div>
 );
@@ -58,6 +59,8 @@ ToWatchList.displayName = 'ToWatchList';
 
 ToWatchList.propTypes = {
   movies: PropTypes.instanceOf(MovieMap).isRequired,
+  allMovies: PropTypes.instanceOf(MovieMap).isRequired,
+  activeFilter: PropTypes.string.isRequired,
   toggleMovieWatched: PropTypes.func.isRequired,
   removeMovie: PropTypes.func.isRequired,
   clearWatchedMovies: PropTypes.func.isRequired,
@@ -90,6 +93,8 @@ const getMoviesByFilter = createSelector(
 
 const mergeProps = (stateProps, dispatchProps) => ({
   movies: getMoviesByFilter(stateProps),
+  allMovies: stateProps.movies,
+  activeFilter: stateProps.activeFilter,
   ...dispatchProps,
 });
 

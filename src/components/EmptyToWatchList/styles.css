@@ -1,0 +1,26 @@
+.empty-watch-list-explore-button {
+  align-items: center;
+  background-color: #E91E63;
+  border: 0;
+  border-radius: 15px;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: flex;
+  font-size: 11px;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 5px 15px;
+}
+
+.empty-watch-list-explore-button:focus {
+  outline: none;
+}
+
+.empty-watch-list-explore-icon {
+  background-image: url("./assets/explore-icon-white.svg");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+}
