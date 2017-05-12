@@ -1,0 +1,51 @@
+.fetched-movie-card {
+  align-items: flex-start;
+  border-bottom: 1px solid #E5E5E5;
+  display: flex;
+  justify-content: space-between;
+}
+
+.fetched-movie-card-description {
+  padding: 10px 20px;
+  position: relative;
+  width: 70%;
+}
+
+.fetched-movie-card-actions {
+  left: 20px;
+  position: absolute;
+  top: 110px;
+}
+
+.fetched-movie-card-action {
+  align-items: center;
+  background-color: transparent;
+  border: 0;
+  display: flex;
+  padding: 0;
+}
+
+.fetched-movie-card-action:focus {
+  outline: 0;
+}
+
+.fetched-movie-card-action-icon {
+  background-repeat: no-repeat;
+  background-size: 100%;
+  display: inline-block;
+  height: 20px;
+  margin-right: 5px;
+  width: 20px;
+}
+
+.fetched-movie-card-action-label {
+  color: #E91E63;
+}
+
+.list-movie-card-action.is-not-saved .list-movie-card-action-label:before {
+  content: "Add to watch list";
+}
+
+.list-movie-card-action.is-saved .list-movie-card-action-label:before {
+  content: "Saved!";
+}
