@@ -6,9 +6,11 @@ import './styles.css';
 
 const FetchedMovieCard = ({
   movie,
-  onToggleSaveMovie,
+  isSaved,
+  onAddMovie,
+  onRemoveMovie,
 }) => {
-  const isSavedClass = movie.get('watched')
+  const isSavedClass = isSaved
     ? 'is-saved'
     : 'is-not-saved';
 
@@ -28,7 +30,13 @@ const FetchedMovieCard = ({
           <div className="fetched-movie-card-actions">
             <button
               className={`fetched-movie-card-action ${isSavedClass}`}
-              onClick={onToggleSaveMovie}
+              onClick={() => {
+                if (!isSaved) {
+                  onAddMovie();
+                } else {
+                  onRemoveMovie();
+                }
+              }}
             >
               <span className="fetched-movie-card-action-label" />
             </button>
@@ -43,7 +51,9 @@ FetchedMovieCard.displayName = 'FetchedMovieCard';
 
 FetchedMovieCard.propTypes = {
   movie: PropTypes.instanceOf(Movie).isRequired,
-  onToggleSaveMovie: PropTypes.func.isRequired,
+  isSaved: PropTypes.bool.isRequired,
+  onAddMovie: PropTypes.func.isRequired,
+  onRemoveMovie: PropTypes.func.isRequired,
 };
 
 export default FetchedMovieCard;

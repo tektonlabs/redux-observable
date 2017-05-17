@@ -1,20 +1,22 @@
-.empty-watch-list-container {
-  position: fixed;
-  top: 50%;
-  transform: translateY(-50%);
-  text-align: center;
+.empty-list-container {
+  left: 0;
   padding: 0 25px;
+  position: fixed;
+  right: 0;
+  top: 50%;
+  text-align: center;
+  transform: translateY(-50%);
 }
 
-.empty-watch-list-text-wrapper {
+.empty-list-text-wrapper {
   margin-bottom: 10px;
 }
 
-.empty-watch-list-title {
+.empty-list-title {
   color: #4C4C4C;
   display: block;
 }
 
-.empty-watch-list-message {
+.empty-list-message {
   display: block;
 }

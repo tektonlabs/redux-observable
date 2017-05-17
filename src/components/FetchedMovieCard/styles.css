@@ -14,19 +14,32 @@
 .fetched-movie-card-actions {
   left: 20px;
   position: absolute;
-  top: 110px;
+  top: 100px;
 }
 
 .fetched-movie-card-action {
   align-items: center;
-  background-color: transparent;
-  border: 0;
+  border: 2px solid transparent;
+  border-radius: 15px;
+  cursor: pointer;
   display: flex;
-  padding: 0;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 7.5px 15px;
 }
 
 .fetched-movie-card-action:focus {
   outline: 0;
+}
+
+.fetched-movie-card-action.is-not-saved {
+  background-color: transparent;
+  border-color: #E91E63;
+}
+
+.fetched-movie-card-action.is-saved {
+  background-color: #E91E63;
+  border-color: transparent;
 }
 
 .fetched-movie-card-action-icon {
@@ -38,14 +51,12 @@
   width: 20px;
 }
 
-.fetched-movie-card-action-label {
+.fetched-movie-card-action.is-not-saved .fetched-movie-card-action-label:before {
   color: #E91E63;
-}
-
-.list-movie-card-action.is-not-saved .list-movie-card-action-label:before {
   content: "Add to watch list";
 }
 
-.list-movie-card-action.is-saved .list-movie-card-action-label:before {
+.fetched-movie-card-action.is-saved .fetched-movie-card-action-label:before {
+  color: #FFFFFF;
   content: "Saved!";
 }

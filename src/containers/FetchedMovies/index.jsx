@@ -1,23 +1,27 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import MovieMap from 'models/MovieMap';
-import { selector } from 'modules/SearchResults';
-import { addMovie } from 'modules/Movies';
+import { selector as searchResultsSelector } from 'modules/SearchResults';
+import { addMovie, removeMovie, selector as moviesSelector } from 'modules/Movies';
 import MovieList from 'components/MovieList';
 import FetchedMovieCard from 'components/FetchedMovieCard';
 
 const FetchedMovies = ({
-  movies,
+  fetchedMovies,
+  savedMovies,
   addMovie,
+  removeMovie,
 }) => (
   <div>
-    {movies.isEmpty() ? <p>No results found</p> : (
+    {fetchedMovies.isEmpty() ? <p>No results found</p> : (
       <MovieList>
-        {movies.valueSeq().map(movie => (
+        {fetchedMovies.valueSeq().map(movie => (
           <FetchedMovieCard
             key={movie.get('id')}
             movie={movie}
-            onToggleSaveMovie={() => { addMovie(movie); }}
+            isSaved={savedMovies.has(movie.get('id'))}
+            onAddMovie={() => { addMovie(movie); }}
+            onRemoveMovie={() => { removeMovie(movie.get('id')); }}
           />
         ))}
       </MovieList>
@@ -28,15 +32,20 @@ const FetchedMovies = ({
 FetchedMovies.displayName = 'FetchedMovies';
 
 FetchedMovies.propTypes = {
-  movies: PropTypes.instanceOf(MovieMap).isRequired,
+  fetchedMovies: PropTypes.instanceOf(MovieMap).isRequired,
+  savedMovies: PropTypes.instanceOf(MovieMap).isRequired,
+  addMovie: PropTypes.func.isRequired,
+  removeMovie: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
-  movies: selector.getMovies(state),
+  fetchedMovies: searchResultsSelector.getMovies(state),
+  savedMovies: moviesSelector.getMovies(state),
 });
 
 const mapDispatchToProps = {
   addMovie,
+  removeMovie,
 };
 
 export default connect(

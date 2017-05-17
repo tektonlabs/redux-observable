@@ -1,4 +1,4 @@
-.empty-watch-list-explore-button {
+.empty-list-button {
   align-items: center;
   background-color: #E91E63;
   border: 0;
@@ -12,15 +12,16 @@
   padding: 5px 15px;
 }
 
-.empty-watch-list-explore-button:focus {
+.empty-list-button:focus {
   outline: none;
 }
 
-.empty-watch-list-explore-icon {
+.empty-list-explore-icon {
   background-image: url("./assets/explore-icon-white.svg");
   background-size: 100%;
   background-repeat: no-repeat;
   display: inline-block;
   height: 20px;
+  margin-right: 7.5px;
   width: 20px;
 }

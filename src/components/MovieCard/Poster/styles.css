@@ -1,8 +1,10 @@
 .movie-card-image-wrapper {
   line-height: 0;
   width: 30%;
+  height: 140px;
 }
 
 .movie-card-image {
   width: 100%;
+  height: 100%;
 }
