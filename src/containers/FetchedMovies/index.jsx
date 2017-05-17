@@ -5,6 +5,7 @@ import { selector as searchResultsSelector } from 'modules/SearchResults';
 import { addMovie, removeMovie, selector as moviesSelector } from 'modules/Movies';
 import MovieList from 'components/MovieList';
 import FetchedMovieCard from 'components/FetchedMovieCard';
+import EmptyResults from 'components/EmptyResults';
 
 const FetchedMovies = ({
   fetchedMovies,
@@ -13,7 +14,7 @@ const FetchedMovies = ({
   removeMovie,
 }) => (
   <div>
-    {fetchedMovies.isEmpty() ? <p>No results found</p> : (
+    {fetchedMovies.isEmpty() ? <EmptyResults /> : (
       <MovieList>
         {fetchedMovies.valueSeq().map(movie => (
           <FetchedMovieCard
