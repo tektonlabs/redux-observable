@@ -16,7 +16,7 @@ class OMDbService {
     }
 
     const data = await response.json();
-    console.log(data);
+
     if (data.Error) {
       throw new Error(`OMDbService searchMovies failed, There was an error in the response ${data.Error}`);
     }
